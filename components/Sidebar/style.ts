@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 import { Avatar, Button, Input } from '@mui/material';
 
-export const Container = styled.div`
+export const Wrapper = styled('div')<{ isOpen: boolean }>`
+  /* .show {
+    display: block;
+  } */
+`;
+
+export const Container = styled('div')<{ isOpen: boolean }>`
   flex: 0.45;
   border-right: 1px solid whitesmoke;
   height: 100vh;
-  min-width: 300px;
-  max-width: 350px;
+  width: ${({ isOpen }) => (isOpen ? '300px' : '0px')};
   overflow-y: scroll;
+  position: relative;
+  left: ${({ isOpen }) => (isOpen ? '0px' : '-300px')};
+  transition: all 400ms cubic-bezier(0.68, 0.64, 0, 1.33);
   ::-webkit-scrollbar {
     display: none;
   }

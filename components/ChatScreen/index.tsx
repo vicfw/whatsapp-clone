@@ -1,5 +1,5 @@
 import { Avatar, IconButton } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import * as Style from './style';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -10,8 +10,10 @@ import en from 'javascript-time-ago/locale/en.json';
 import TimeAgo from 'javascript-time-ago';
 import { useChatScreen } from '../../hooks/chatScreen';
 import { ChatScreenPropTypes } from './type';
+import { SidebarContext } from '../../context';
 
 const ChatScreen: FC<ChatScreenPropTypes> = ({ chat, messages }) => {
+  //custom hook
   const {
     recipientEmail,
     recipientSnapshot,
@@ -21,6 +23,8 @@ const ChatScreen: FC<ChatScreenPropTypes> = ({ chat, messages }) => {
     setInput,
     endMassageRef,
   } = useChatScreen(chat, messages);
+
+  const { setShowSidebar, showSidebar } = useContext(SidebarContext);
 
   TimeAgo.addDefaultLocale(en);
 
@@ -47,11 +51,8 @@ const ChatScreen: FC<ChatScreenPropTypes> = ({ chat, messages }) => {
           )}
         </Style.HeaderInformation>
         <Style.HeaderIcon>
-          <IconButton>
+          <IconButton onClick={() => setShowSidebar(!showSidebar)}>
             <MoreVertIcon />
-          </IconButton>
-          <IconButton>
-            <AttachFileIcon />
           </IconButton>
         </Style.HeaderIcon>
       </Style.Header>

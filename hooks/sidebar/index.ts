@@ -30,7 +30,7 @@ const useSidebar = () => {
       input === user!.email ||
       (await chatAlreadyExists(input))
     )
-      return alert('error');
+      return alert('Please enter a valid email!');
 
     await setDoc(doc(db, 'chats', user?.uid as string), {
       users: [user?.email, input],

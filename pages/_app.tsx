@@ -4,6 +4,7 @@ import Login from './login';
 import Loading from '../components/Loading';
 import 'react-toastify/dist/ReactToastify.css';
 import useApp from '../hooks/_app';
+import { ContextProvider } from '../context';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { user, loading } = useApp();
@@ -11,7 +12,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   if (loading) return <Loading />;
   if (!user) return <Login />;
 
-  return <Component {...pageProps} />;
+  return (
+    <ContextProvider>
+      <Component {...pageProps} />
+    </ContextProvider>
+  );
 }
 
 export default MyApp;
