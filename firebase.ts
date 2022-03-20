@@ -5,7 +5,7 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCRzFLnz7bael20dtNPemRpvOVEpPCQP_U',
+  apiKey: process.env.FIREBASE_APIKEY,
   authDomain: 'whatsapp-clone-2aa9c.firebaseapp.com',
   projectId: 'whatsapp-clone-2aa9c',
   storageBucket: 'whatsapp-clone-2aa9c.appspot.com',
